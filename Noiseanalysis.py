@@ -113,9 +113,9 @@ for mod_file,mod in zip(listofmodules_root,mods):
 
 fig, axes = plt.subplots(1, 2, figsize=(20, 10))  
 axes[0].hist(Mean_of_adc_mean, bins = 18, histtype = 'step',stacked=True, label=mods)
-axes[0].set_xlabel('mean val adc_mean')
+axes[0].set_xlabel('mean value adc_count_mean')
 axes[0].set_ylabel('Entries')
-axes[0].set_title('ADC Mean Means all mods')
+axes[0].set_title('Mean of adc_mean values for all V3As @ TTU ')
 #axes[0].set_xlim(0, 250)
 
 
@@ -123,7 +123,7 @@ axes[0].set_title('ADC Mean Means all mods')
 axes[1].hist(Mean_of_adc_std,bins = 18,histtype = 'step',stacked=True, label=mods)
 axes[1].set_xlabel('adc_mean')
 axes[1].set_ylabel('Entries')
-axes[1].set_title('ADC mean for adc std all mods')
+axes[1].set_title('Mean of adc_std values for all V3As @ TTU ')
 axes[1].legend(loc = 'upper right')
 #axes[1].legend()
 #axes[1].set_xlim(0, 250)
