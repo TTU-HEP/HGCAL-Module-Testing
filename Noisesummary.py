@@ -40,5 +40,5 @@ plt.title('Number of Noisy Channels per Module')
 plt.xticks(rotation=90, fontsize=8)
 plt.legend()
 
-output_pdf = "NoisyChannels_summary.pdf"
-plt.savefig(output_pdf, format="pdf", bbox_inches="tight")
+output_pdf = "NoisyChannels_summary.jpg"
+plt.savefig(output_pdf, format="jpg", bbox_inches="tight")
