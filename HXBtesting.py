@@ -1,6 +1,7 @@
 import uproot
 import matplotlib.pyplot as plt
 import numpy as np
+#import ROOT no ROOT :(
 
 listofmodules_root= [
     'data/320-XL-F42-MH-00212/Untaped_2025-03-14/qc_test/pedestal_run/run_20250314_140258',
@@ -129,6 +130,27 @@ for mod_file,hxb in zip(listofmodules_root,hxbs):
 
     std_mean = np.mean(adc_stdd)
     std_std = np.std(adc_stdd)
+
+    # Define histograms
+    # hist_adc_mean = ROOT.TH1F(f"adc_mean_{hxb}", f"ADC Mean {hxb}", 70, min(adc_mean), max(adc_mean))
+    # hist_adc_stdd = ROOT.TH1F(f"adc_stdd_{hxb}", f"ADC Std {hxb}", 70, min(adc_stdd), max(adc_stdd))
+
+    # # Fill histograms
+    # for val in adc_mean:
+    #     hist_adc_mean.Fill(val)
+    # for val in adc_stdd:
+    #     hist_adc_stdd.Fill(val)
+
+    # # Write histograms to the ROOT file
+    # hist_adc_mean.Write()
+    # hist_adc_stdd.Write()
+
+    # all_adc_means.append(adc_mean)
+    # all_adc_stdd.append(adc_stdd)
+    # Mean_of_adc_mean.append(mean_val)
+    # Mean_of_adc_std.append(std_mean)
+
+
     axes[0].hist(adc_mean, bins=70,histtype = 'step', label=f"{hxb}\nMean: {mean_val:.2f}\nStd: {std_val:.2f}")
     axes[0].set_xlabel('adc_mean')
     axes[0].set_ylabel('Entries')
@@ -161,7 +183,7 @@ for mod_file,hxb in zip(listofmodules_root,hxbs):
 
 fig, axes = plt.subplots(1, 2, figsize=(20, 10))  
 #axes[0].hist(Mean_of_adc_mean, bins = 18, histtype = 'step',stacked=True, label=hxbs)
-axes[0].hist(Mean_of_adc_mean, histtype = 'step',)
+axes[0].hist(Mean_of_adc_mean, histtype = 'step',bins = 22)
 axes[0].set_xlabel('adc__mean')
 axes[0].set_ylabel('Entries')
 axes[0].set_title('Mean of adc_mean values for all V3Bs @ TTU Untrimmed')
@@ -170,7 +192,7 @@ axes[0].set_title('Mean of adc_mean values for all V3Bs @ TTU Untrimmed')
 
 
 #axes[1].hist(Mean_of_adc_std,bins = 18,histtype = 'step',stacked=True, label=hxbs)
-axes[1].hist(Mean_of_adc_std,histtype = 'step')
+axes[1].hist(Mean_of_adc_std,histtype = 'step',bins = 22)
 axes[1].set_xlabel('mean value Noise(adc_std)')
 axes[1].set_ylabel('Entries')
 axes[1].set_title('Mean of Noise(adc_std) values for all V3Bs @ TTU Untrimmed')
@@ -184,6 +206,25 @@ plt.close(fig)
 
 
 
+# hist_dict = {}
+# hist_summary_mean, bin_edges_summary_mean = np.histogram(Mean_of_adc_mean, bins=22)
+# hist_summary_std, bin_edges_summary_std = np.histogram(Mean_of_adc_std, bins=22)
 
+# # Store summary histograms
+# hist_dict["Mean_of_adc_mean"] = {
+#     "fValues": hist_summary_mean,
+#     "fBinEdges": bin_edges_summary_mean
+# }
+# hist_dict["Mean_of_adc_std"] = {
+#     "fValues": hist_summary_std,
+#     "fBinEdges": bin_edges_summary_std
+# }
 
+# # Write to ROOT file using uproot
+# with uproot.recreate("outputplots/V3b/Summary/ADC_Noise_Study.root") as f:
+#     for key, hist in hist_dict.items():
+#         f[key] = uproot.writing.identify.interpretation_from_histogram(
+#             (hist["fValues"], hist["fBinEdges"])
+#         )
 
+# print("Histograms saved in ADC_Noise_Study.root ")
