@@ -22,10 +22,11 @@ directories = ['/home/daq3/hgcal/data/320-ML-F3CX-TT-0014/Completely_Encapsulate
 '/home/daq3/hgcal/data/320-ML-F3CX-TT-0030/Completely_Encapsulated_2025-03-03/chamber_test1/320-ML-F3CX-TT-0030_IVset_2025-03-03_14:15:24_0.pkl',
 '/home/daq3/hgcal/data/320-ML-F3CX-TT-0029/Completely_Encapsulated_2025-03-05/chamber_test1/320-ML-F3CX-TT-0029_IVset_2025-03-05_10:50:10_0.pkl',
 '/home/daq3/hgcal/data/320-ML-F3CX-TT-0031/Completely_Encapsulated_2025-03-03/chamber_test1/320-ML-F3CX-TT-0031_IVset_2025-03-03_15:43:45_0.pkl',
+'/home/daq3/hgcal/data/320-ML-F3CX-TT-0032/Completely_Encapsulated_2025-03-11/chamber_test1/320-ML-F3CX-TT-0032_IVset_2025-03-11_11:11:05_0.pkl',
 ]
 
 mods = ['320-ML-F3CX-TT-0014','320-ML-F3CX-TT-0015','320-ML-F3CX-TT-0016','320-ML-F3CX-TT-0017','320-ML-F3CX-TT-0019','320-ML-F3CX-TT-0020','320-ML-F3CX-TT-M21','320-ML-F3CX-TT-M22','320-ML-F3CX-TT-M23','320-ML-F3CX-TT-M24','320-ML-F3CX-TT-M25','320-ML-F3CX-TT-0026'
-        ,'320-ML-F3CX-TT-0027','320-ML-F3CX-TT-0028','320-ML-F3CX-TT-0030','320-ML-F3CX-TT-0029','320-ML-F3CX-TT-0031'
+        ,'320-ML-F3CX-TT-0027','320-ML-F3CX-TT-0028','320-ML-F3CX-TT-0030','320-ML-F3CX-TT-0029','320-ML-F3CX-TT-0031','320-ML-F3CX-TT-0032'
 
 
 ]
@@ -55,6 +56,6 @@ plt.xlim(0, max(x_values) * 1.2)
 #plt.grid(True)                                                                                                                                                                                                       
 
 
-output_pdf = "IVcombined.pdf"
-plt.savefig(output_pdf, format="pdf")
+output_pdf = "IVcombined.jpg"
+plt.savefig(output_pdf, format="jpg")
 #plt.show()
