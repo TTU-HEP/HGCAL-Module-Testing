@@ -157,11 +157,24 @@ for mod_file,hxb in zip(listofmodules_root,hxbs):
     axes[0].set_title('ADC Mean ')
     #axes[0].set_xlim(0, 200)
     axes[0].legend()
+    axes[0].xaxis.set_label_coords(0.95, -0.05)  
+    axes[0].yaxis.set_label_coords(-0.025, 0.95) 
+    axes[0].minorticks_on()
+    axes[0].tick_params(axis='both', which='major', direction='in', length=6, width=1)
+    axes[0].tick_params(axis='both', which='minor', direction='in', length=3, width=0.5)
 
     axes[1].hist(adc_stdd, bins=70, histtype = 'step',label=f"{hxb}\nMean: {std_mean:.2f}\nStd: {std_std:.2f}")
-    axes[1].set_xlabel('adc_std(noise)')
+    axes[1].set_xlabel('Noise')
     axes[1].set_ylabel('Entries')
     axes[1].set_title('ADC STD')
+    axes[1].legend()
+    axes[1].xaxis.set_label_coords(0.95, -0.05)  
+    axes[1].yaxis.set_label_coords(-0.025, 0.95) 
+    axes[1].minorticks_on()
+    axes[1].minorticks_on()
+    axes[1].tick_params(axis='both', which='major', direction='in', length=6, width=1)
+    axes[1].tick_params(axis='both', which='minor', direction='in', length=3, width=0.5)
+
     #axes[1].set_xlim(0, 200)
     #axes[1].legend(loc = 'upper right')
 
@@ -183,25 +196,39 @@ for mod_file,hxb in zip(listofmodules_root,hxbs):
 
 fig, axes = plt.subplots(1, 2, figsize=(20, 10))  
 #axes[0].hist(Mean_of_adc_mean, bins = 18, histtype = 'step',stacked=True, label=hxbs)
-axes[0].hist(Mean_of_adc_mean, histtype = 'step',bins = 22)
-axes[0].set_xlabel('adc__mean')
-axes[0].set_ylabel('Entries')
-axes[0].set_title('Mean of adc_mean values for all V3Bs @ TTU Untrimmed')
+axes[0].hist(Mean_of_adc_mean,  bins=22, histtype='step', color='green', linewidth=2)
+axes[0].set_xlabel('ADC Mean ', fontsize=14, fontname='Times New Roman')
+axes[0].set_ylabel('Entries', fontsize=14, fontname='Times New Roman')
+axes[0].set_title('Mean of Adc mean values for all V3Bs @ TTU Untrimmed', fontsize=16, fontname='Times New Roman')
+axes[0].xaxis.set_label_coords(0.85, -0.05)  
+axes[0].yaxis.set_label_coords(-0.025, 0.95) 
+axes[0].minorticks_on()
+axes[0].tick_params(axis='both', which='major', direction='in', length=6, width=1)
+axes[0].tick_params(axis='both', which='minor', direction='in', length=3, width=0.5)
 #axes[0].set_xlim(0, 250)
 
 
 
 #axes[1].hist(Mean_of_adc_std,bins = 18,histtype = 'step',stacked=True, label=hxbs)
-axes[1].hist(Mean_of_adc_std,histtype = 'step',bins = 22)
-axes[1].set_xlabel('mean value Noise(adc_std)')
-axes[1].set_ylabel('Entries')
-axes[1].set_title('Mean of Noise(adc_std) values for all V3Bs @ TTU Untrimmed')
+axes[1].hist(Mean_of_adc_std, bins=22, histtype='step', color='green', linewidth=2)
+axes[1].set_xlabel('Mean value Noise', fontsize=14, fontname='Times New Roman')
+axes[1].set_ylabel('Entries', fontsize=14, fontname='Times New Roman')
+axes[1].set_title('Mean of Noise(Adc Std) values for all V3Bs @ TTU Untrimmed', fontsize=16, fontname='Times New Roman')
 axes[1].legend(loc = 'upper right')
+axes[1].xaxis.set_label_coords(0.85, -0.05)  
+axes[1].yaxis.set_label_coords(-0.025, 0.95) 
+axes[1].minorticks_on()
+axes[1].minorticks_on()
+axes[1].tick_params(axis='both', which='major', direction='in', length=6, width=1)
+axes[1].tick_params(axis='both', which='minor', direction='in', length=3, width=0.5)
+
 #axes[1].legend()
 #axes[1].set_xlim(0, 250)
+plt.rcParams['font.family'] = 'Times New Roman'
 output_jpg = f"outputplots/V3b/SummaryV3b_hxbs.jpg"
 plt.savefig(output_jpg, format="jpg", bbox_inches="tight")
 plt.close(fig)
+
 #axes[1].legend()
 
 
