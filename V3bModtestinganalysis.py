@@ -15,10 +15,10 @@ listofmodules_root= [
     'data/320-ML-F3W2-TT-0105/Completely_Bonded_2025-04-07/chambertest1/pedestal_run/run_20250407_152353_BV300_RH0_T20_trimmed300/',
     'data/320-ML-F3W2-TT-0108/Completely_Bonded_2025-03-28/chambertest1/pedestal_run/run_20250328_142217_BV300_RH0_T20_trimmed300',
     'data/320-ML-F3W2-TT-0108/Completely_Encapsulated_2025-04-02/chambertest1/pedestal_run/run_20250402_160336_BV300_RH0_T20_trimmed300',
-    'data/320-ML-F3W2-TT-0110/Completely_Encapsulated_2025-04-11/ChamberTest2/pedestal_run/run_20250411_142350_BV300_RH0_T20_trimmed300',
+    'data/320-ML-F3W2-TT-0110/Completely_Encapsulated_2025-04-18/chambertest1/pedestal_run/run_20250418_084153_BV300_RH4_T20_trimmed300',
     'data/320-ML-F3W2-TT-0111/Completely_Bonded_2025-04-11/ChamberTest1/pedestal_run/run_20250411_151339_BV300_RH0_T20_trimmed300',
-    'data/320-ML-F3W2-TT-0113/Completely_Bonded_2025-04-11/ChamberTest1/pedestal_run/run_20250411_160125_BV300_RH0_T20_trimmed300',
-    ]
+    'data/320-ML-F3W2-TT-0113/Completely_Bonded_2025-04-16/chambertest2/pedestal_run/run_20250416_155741_BV800_RH0_T20_trimmed300',
+    'data/320-ML-F3W2-TT-0114/Completely_Bonded_2025-04-17/chambertest1/pedestal_run/run_20250417_121643_BV300_RH0_T20_trimmed300',]
 
 
 print(f'total number of modules = {len(listofmodules_root)}')
@@ -33,6 +33,7 @@ mods = [
     'MLF3W2TT0110',
     'MLF3W2TT0111',
     'MLF3W2TT0113',
+    'MLF3W2TT0114',
 
 ]
 
