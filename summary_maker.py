@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import argparse
 parser = argparse.ArgumentParser(description="Easy input of date.")
 
-parser.add_argument('date', type=str, help="date string")
+parser.add_argument('--date', type=str, help="date string")
 parser.add_argument('--viewer_pwd', type=str, default='XXXXX', required=False, help="Viewer PSQL password")
 args = parser.parse_args()
 
@@ -18,13 +18,13 @@ configuration = {}
 with open('dbase_info/conn.yaml', 'r') as file:
     configuration = yaml.safe_load(file)
 #ass_date_start="2025-03-18"
-async def fetch_module_info(ass_date_start):
+async def fetch_module_info(ass_date_start,pwd):
     # instantiate db connection  
     conn = await asyncpg.connect(
             host = configuration['db_hostname'],
             database = configuration['dbname'],
             user = 'viewer', #configuration['postg']
-            password = args.viewer_pwd #configuration['DBPassword']
+            password = pwd#args.viewer_pwd #configuration['DBPassword']
         )
     ass_date = datetime.strptime(ass_date_start, '%Y-%m-%d').date()
     counting=f"""SELECT COUNT(*) from module_info WHERE assembled >= $1 ;"""
@@ -104,21 +104,21 @@ def root_file_create(ass_date_start,module_names_array,v_info,i_info,adc_stdd,ad
     print("perhaps i made a summary root file?")
 
 def plot_summary(input_root_file,module_names_array,ass_date_start):
+    fig, ax = plt.subplots()
     for j in module_names_array:
         f = uproot.open(input_root_file)
         i=f[j+'/meas_i'].array()
         v=f[j+'/meas_v'].array()
-        plt.plot(v,i,label=j)
-    plt.xlim(0,850)
-    plt.title('IV Summary of production since '+ass_date_start)
-    plt.yscale('log')
-    plt.xlabel('V')
-    plt.ylabel('I [A]')
-    plt.legend(fontsize='small')
-    plt.show()
-    plt.savefig('iv_summary_'+ass_date_start+'.pdf')
+        ax.plot(v, i, label=j)
+    ax.set_xlim(0, 850)
+    ax.set_title('IV Summary of production since ' + ass_date_start)
+    ax.set_yscale('log')
+    ax.set_xlabel('V')
+    ax.set_ylabel('I [A]')
+    ax.legend(fontsize='small')
     std=[]
     means=[]
+    return fig
     
     '''plt.figure(figsize=(8, 6))
     plt.hist(std)
@@ -135,7 +135,7 @@ def plot_summary(input_root_file,module_names_array,ass_date_start):
     plt.savefig('adc_mean_summary_'+ass_date_start+'.pdf')
 '''
 
-module_names_array,v_info,i_info,adc_stdd,adc_mean =asyncio.run(fetch_module_info(args.date))
-print(v_info)
-root_file_create(args.date,module_names_array,v_info,i_info,adc_stdd,adc_mean) 
-plot_summary('summary_since_'+args.date+'.root',module_names_array,args.date)
+#module_names_array,v_info,i_info,adc_stdd,adc_mean =asyncio.run(fetch_module_info(args.date))
+#print(v_info)
+#root_file_create(args.date,module_names_array,v_info,i_info,adc_stdd,adc_mean) 
+#plot_summary('summary_since_'+args.date+'.root',module_names_array,args.date)
